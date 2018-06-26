@@ -1,0 +1,19 @@
+{
+  "name": "json-item-editor",
+  "version": "1.0.0",
+  "description": "edit portfolio json",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "alex",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.1",
+    "mongoose": "^5.0.0-rc0",
+    "pug": "^2.0.0-rc.4"
+  }
+}

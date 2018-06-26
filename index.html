@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>JSON Item Editor</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="defaultStyling.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+  	<div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">Portfolio Collection</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h2>New Item</h2>
+        
+        <form method="post" action="/additem" id="itemForm">
+			
+        	<!--<div class="form-group">
+			    <label for="exampleInputEmail1">Email address</label>
+			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+			</div>-->
+
+			<div class="form-group">
+				<label for="title">Title text</label>
+				<br>
+				<input type="text" class="form-control" name="title" placeholder="title text">
+				<br>
+			</div>
+
+			<div class="form-group">
+				<label for="embed">Embed</label>
+				<br>
+				<input type="url" class="form-control" name="embed" placeholder="url to content">
+				<br>
+			</div>
+	
+			<div class="form-group">		
+				<label for="thumbnail">Thumbnail</label>
+				<br>
+				<input type="url" class="form-control" name="thumbnail" placeholder="url to thumbnail">
+				<br>
+			</div>
+
+			<div class="form-group">
+				<label for="mediaType">Media Type</label>
+				<br>
+				<select class="form-control" name="mediaType" size="4">
+					<option value="img">Image</option>
+					<option value="gfy">Gfycat</option>
+					<option value="youtube">YouTube</option>
+					<option value="sketchfab">Sketchfab</option>
+				</select>
+
+				<br>
+			</div>
+
+			<div class="form-group">			
+				<label for="desc">Description</label>
+				<br>
+				<input type="text" class="form-control" name="desc" placeholder="description">
+				<br>
+			</div>
+				
+			<div class="form-group">
+				<label for="link">Supplement Link</label>
+				<br>
+				<input type="url" class="form-control" name="link" placeholder="url to supplementary resource">
+				<br>
+			</div>
+
+			<!-- for process photos, pop up an iframe in a modal?-->
+			<!-- here's a complication-->
+			<!-- solution: use 'select' with 'multiple' keyword appended-->
+			<div class="form-group">
+				<label for="tagsPrime">Primary Categories</label>
+				<br>
+				<input type="text" class="form-control" name="tagsPrime" placeholder="tagsPrime">
+				<br>
+			</div>
+			
+			<div class="form-group">
+				<label for="tagsSecondary">Secondary Categories</label>
+				<br>
+				<input type="text" class="form-control" name="tagsSecondary" placeholder="tagsSecondary">
+				<br>
+			</div>
+
+			<div class="form-group">
+				<label for="priority">Priority Value</label>
+				<br>
+				<input type="number" class="form-control" name="priority" placeholder="1">
+				<br>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+
+		</form>
+      </div>
+
+      <footer class="footer">
+        <p>By Alex, Last Day of 2017</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    
+	<script>
+		console.log("wait"); 
+
+		var pushNewItem = function() {
+			var title, embed, thumbnail, mediaType, desc, link, tagsPrime, tagsSecondary, priority;
+
+			title = document.getElementById('title').value;
+			embed = document.getElementById('embed').value;
+			thumbnail = document.getElementById('thumbnail').value;
+			mediaType = document.getElementById('mediaType').value;
+			desc = document.getElementById('desc').value;
+			link = document.getElementById('link').value;
+			tagsPrime = document.getElementById('tagsPrime').value;
+			tagsSecondary = document.getElementById('tagsSecondary').value;
+			priority = document.getElementById('priority').value;
+
+			console.log(title); 
+
+			var item = {
+				'title': title,
+				'embed': embed,
+				'thumbnail': thumbnail,
+				'mediaType': mediaType,
+				'desc': desc,
+				'link': link,
+				'tagsPrime': tagsPrime,
+				'tagsSecondary': tagsSecondary,
+				'priority': priority
+			}
+
+			console.log(JSON.stringify(item)); 
+
+		}
+	</script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+<!--
+<body>
+	<form id="myForm">
+	  	Absolute error calculator 
+	  	<br>
+	  	<br>
+		<input type="radio" name="operation" value="add" checked> <strong>+</strong><br>
+		<input type="radio" name="operation" value="subtract"> <strong>-</strong><br>
+		<input type="radio" name="operation" value="multiply"> <strong>*</strong><br>
+		<input type="radio" name="operation" value="divide"> <strong>/</strong>
+
+		<br>
+	  	<br>
+		<input type="text" name="value1" value="0.00">
+		<strong>+/-</strong>
+		<input type="text" name="value1Error" value="0.00">
+		<br>
+		<input type="text" name="value2" value="0.00">
+		<strong>+/-</strong>
+		<input type="text" name="value2Error" value="0.00">
+		
+		<br>
+		<br>
+		<input type="button" value="Submit" onclick="execute()">
+
+	</form> 
+
+	<h3 id="output"></h3>
+
+	<h4><em>By Alex, 2017</em></h4>
+
+	<script>
+
+	function execute() { 
+		var opType;  
+
+		var radios = document.getElementsByName('operation');
+
+		for (var i = 0, length = radios.length; i < length; i++) {
+		    if (radios[i].checked) {
+		        // do whatever you want with the checked radio
+		        opType = radios[i].value;
+
+		        // only one radio can be logically checked, don't check the rest
+		        break;
+		    }
+		}
+
+		var val1 = parseFloat(document.getElementsByName('value1')[0].value);
+		var e1 = parseFloat(document.getElementsByName('value1Error')[0].value);
+		var val2 = parseFloat(document.getElementsByName('value2')[0].value);
+		var e2 = parseFloat(document.getElementsByName('value2Error')[0].value);
+
+		var result; 
+
+		switch (opType) {
+			case 'add': 
+				result = addSub(val1, e1, val2, e2, false); 
+				break;
+			case 'subtract': 
+				result = addSub(val1, e1, val2, e2, true); 
+				break;
+			case 'multiply': 
+				result = multDiv(val1, e1, val2, e2, false); 
+				break;
+			case 'divide': 
+				result = multDiv(val1, e1, val2, e2, true); 
+				break;
+		}
+
+		console.log(val1+', '+e1+', '+val2+', '+e2+', '+result+', '+opType); 
+		document.getElementById('output').innerHTML = result.result.toString() + " +/- " + result.error.toString(); 
+
+	}
+
+	function multDiv(val1, e1, val2, e2, isDiv) {
+		var result; 
+		var error; 
+
+		if (isDiv) {
+			result = val1/val2; 
+		}
+		else {
+			result = val1*val2; 
+		}
+
+		error = result * (e1/val1 + e2/val2); 
+
+		return {result: result, error: error}; 
+	}
+
+	function addSub(val1, e1, val2, e2, isSub) {
+		var result; 
+		var error; 
+
+		if (isSub) {
+			result = val1-val2; 
+		}
+		else {
+			result = val1+val2; 
+		}
+
+		error = e1 + e2; 
+
+		return {result: result, error: error}; 
+	}
+
+	</script>
+</body>
+-->
+</html>

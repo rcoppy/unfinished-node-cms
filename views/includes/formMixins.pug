@@ -1,0 +1,18 @@
+mixin form(meth, act, myID)
+  form(method=meth action=act id=myID)
+    block
+
+mixin textInput(title, titleText, placeholderText)
+  div(class='form-group') 
+    label(for=title) #{titleText}
+    br 
+    input(type='text' class='form-control' name=title placeholder=placeholderText) 
+    br  
+
+mixin selectInput(title, titleText, mySize)
+  div(class='form-group')
+    label(for=title) #{titleText} 
+    br 
+    select(class='form-control' name=title size=mySize)
+      block 
+    br
